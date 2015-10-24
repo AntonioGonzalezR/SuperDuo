@@ -73,8 +73,10 @@ public class AddBook extends Fragment implements LoaderManager.LoaderCallbacks<C
                 }
                 if(ean.length()<13){
                     clearFields();
-                    Toast toast = Toast.makeText(getActivity(), getActivity().getString(R.string.bar_code_no_valid), Toast.LENGTH_SHORT);
-                    toast.show();
+                    if( !ean.equals("") ) {
+                        Toast toast = Toast.makeText(getActivity(), getActivity().getString(R.string.bar_code_no_valid), Toast.LENGTH_SHORT);
+                        toast.show();
+                    }
                     return;
                 }
 

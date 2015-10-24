@@ -37,6 +37,7 @@
                     android:id="@+id/fullBookCover"
                     android:contentDescription="@string/book_cover"
                     android:layout_marginTop="15dp"
+                    android:src="@drawable/ic_launcher"
                     android:layout_below="@+id/fullBookTitle"
                     android:layout_alignLeft="@+id/fullBookTitle"
                     android:layout_alignStart="@+id/fullBookTitle"/>
@@ -92,20 +93,6 @@
                         android:textStyle="bold"
                         android:gravity="end|top"/>
                 </LinearLayout>
-
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@string/back_button"
-                    android:id="@+id/backButton"
-                    android:onClick="goBack"
-                    android:src="@drawable/ic_action_undo"
-                    style="?android:attr/buttonBarButtonStyle"
-                    android:layout_gravity="end|top"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignRight="@+id/fullBookTitle"
-                    android:layout_alignEnd="@+id/fullBookTitle"/>
-
 
             </RelativeLayout>
 

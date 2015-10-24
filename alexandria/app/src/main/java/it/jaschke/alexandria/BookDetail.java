@@ -1,5 +1,6 @@
 package it.jaschke.alexandria;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
@@ -68,7 +69,25 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
                 getActivity().getSupportFragmentManager().popBackStack();
             }
         });
+        setHasOptionsMenu(true);
         return rootView;
+    }
+
+    /**
+     * Removing  custom back navigation button and  adding
+     * functionality in action bar
+     * @param item
+     * @return
+     */
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                getFragmentManager().popBackStack();
+                return true; //Notice you must returning true here
+            default:
+                return super.onOptionsItemSelected(item);
+        }
     }
 
     @Override
@@ -95,6 +114,18 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
         mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(menuItem);
         mShareActionProvider.setShareIntent( getSharedIntent() );
         super.onCreateOptionsMenu( menu,inflater );
+    }
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+    }
+
+    @Override
+    public void onActivityCreated(Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        MainActivity main = (MainActivity)getActivity();
+        main.setNavigationDrawerIndicator(false);
     }
 
     @Override
@@ -157,9 +188,9 @@ public class BookDetail extends Fragment implements LoaderManager.LoaderCallback
         String categories = data.getString(data.getColumnIndex(AlexandriaContract.CategoryEntry.CATEGORY));
         ((TextView) rootView.findViewById(R.id.categories)).setText(categories);
 
-        if(rootView.findViewById(R.id.right_container)!=null){
-            rootView.findViewById(R.id.backButton).setVisibility(View.INVISIBLE);
-        }
+        //if(rootView.findViewById(R.id.right_container)!=null){
+            //rootView.findViewById(R.id.backButton).setVisibility(View.INVISIBLE);
+        //}
 
     }
 
